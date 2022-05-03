@@ -32,6 +32,17 @@ module CodicaClinicApp
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Don't generate system test files.
+
+    config.generators do |g|
+      g.test_framework :rspec, fixture: true
+      g.fixture_replacement :factory_bot, dir: 'spec/factories'
+      g.view_specs false
+      g.helper_specs false
+      g.stylesheets = false
+      g.javascripts = false
+      g.helper = false
+    end
+    
     config.generators.system_tests = nil
   end
 end
