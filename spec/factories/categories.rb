@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :category do
-    title { "MyString" }
+    title { ['surgeon', 'traumatologist', 'therapist', 'dentist'].sample }
   end
 end
