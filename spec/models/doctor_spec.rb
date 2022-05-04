@@ -15,5 +15,7 @@ RSpec.describe Doctor, type: :model do
   it { should validate_confirmation_of(:password) }
   it { should allow_value('example@domain.com').for(:email) }
 
-  it { should belong_to(:category) } 
+  it { should belong_to(:category) }
+  it { should have_many(:appointments) } 
+  it { should have_many(:patients).through(:appointments) } 
 end
