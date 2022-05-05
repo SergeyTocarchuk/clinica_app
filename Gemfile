@@ -73,4 +73,8 @@ group :development do
   # gem "spring"
 end
 
+group :development do
+  gem 'ffaker'
+end
+
 gem "dartsass-rails", "~> 0.3.0"
