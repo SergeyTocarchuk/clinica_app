@@ -73,3 +73,5 @@ group :development do
   # gem "spring"
 end
 
+
+gem "dartsass-rails", "~> 0.3.0"
