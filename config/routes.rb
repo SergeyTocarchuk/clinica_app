@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   devise_for :patients, path: 'patients'
 
   root to: "categories#index"
+
+  resources :categories, :only => [:show]
 end

@@ -1,6 +1,9 @@
 <h1>Codica Clinic</h1>
 <div>
   <% @categories.each do |category| %>
-    <%= category.title %>
+  <ul>
+    <li><%= category.title %></li>
+    <%= link_to "View", category_path(category) %>
+  </ul>
   <% end %>
 </div>
