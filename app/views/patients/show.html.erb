@@ -1,0 +1,17 @@
+<p><%= @patient.email %></p>
+
+<div class="red">
+  <h3>My Coming Appointments</h3>
+  <ol>
+    <% @appointments.each do |appointment| %>
+      <li>
+        <p><%= appointment.doctor.name %></p>
+        <p><%= appointment.doctor.email %></p>
+        <%= link_to 'View Doctor info', doctor_path(appointment.doctor.id) %>
+        <% if can? :manage, Appointment %>
+          <%= link_to 'Cancel an appointment', doctor_path(appointment.doctor.id) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ol>
+</div>
