@@ -13,4 +13,3 @@
     bin/dev
 
 * How to run the test suite
-

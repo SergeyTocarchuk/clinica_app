@@ -8,7 +8,7 @@ class Ability
       if user.is_a?(Patient)
         can :manage, Appointment
       elsif user.is_a?(Doctor)
-        can :update, Appointment
+        can :manage, Appointment
       else
         can :read, Appointment
       end

@@ -1,4 +1,11 @@
 // Sassy
 
-@import "active_admin";
-@import "styles/main"
+// @import "active_admin";
+@import "styles/main";
+
+.nav {
+  display: flex;
+  height: 60px;
+  background-color: rgb(25, 172, 209);
+  justify-content: space-between;
+}

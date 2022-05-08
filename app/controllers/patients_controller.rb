@@ -1,6 +1,6 @@
 class PatientsController < ApplicationController
   def show
-    @patient = current_patient
+    @patient = patient_signed_in? ? current_patient : Patient.find(params[:id])
     @appointments = @patient.appointments
   end
 end

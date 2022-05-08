@@ -8,10 +8,15 @@ Rails.application.routes.draw do
   end
 
   root to: "categories#index"
+  patch '/appointments/:appointment_id/add_recommendation', to: 'appointments#add_recommendation', as: :recommendations
 
   resources :categories, :only => [:show]
   resources :doctors, :only => [:show] do
-    resources :appointments, :only => [:create]
+    resources :appointments, :only => [:show, :create]
   end
-  resources :patients, :only => [:show]
+  resources :patients, :only => [:show] do
+    resources :appointments, :only => [:update]
+  end
+
+  
 end

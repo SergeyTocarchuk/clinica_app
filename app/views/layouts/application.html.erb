@@ -6,27 +6,12 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%# <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <nav>
-      <div>
-        <p>
-          <% if current_patient.present? %>
-            <span><%= current_patient.email %>  <%= button_to "Log out", destroy_patient_session_path, method: :delete %></span>
-          <% elsif current_doctor.present? %>
-            <span><%= current_doctor.email %>  <%= button_to "Log out", destroy_doctor_session_path, method: :delete %></span>
-          <% else %>
-            <p>Patients  <%= link_to "Log in", new_patient_session_path %> | 
-                         <%= link_to "Sign up", new_patient_registration_path %>
-            </p>
-            <p>Doctors  <%= link_to "Log in", new_doctor_session_path %> </p>
-          <% end %>
-        </p>
-      </div>
-    </nav>
+    <%= render 'shared/navbar' %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>

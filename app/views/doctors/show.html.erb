@@ -4,15 +4,15 @@
 
 <div>
   <% if can? :manage, Appointment %>
-    <%= link_to 'Book an appointment', doctor_appointments_path(@doctor), method: :post %>
+    <%= button_to 'Book an appointment', doctor_appointments_path(@doctor), method: :post %>
   <% end %>
 </div>
 
 <div class="red">
   <h3>My Coming Appointments</h3>
   <ol>
-    <% @appointments.each do |appointment| %>
-      <li><%= appointment.patient.email %></li>
+    <% @doctor.appointments.each do |appointment| %>
+      <li>Patient's e-mail:<%= link_to appointment.patient.email, doctor_appointment_path(@doctor.id, appointment.id) %></li>
     <% end %>
   </ol>
 </div>
