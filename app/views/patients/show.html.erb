@@ -21,6 +21,7 @@
       <% @appointments.closed.each do |appointment| %>
         <li>
           <p><%= appointment.recommendation %></p>
+          <%= image_tag(appointment.photo, width: 200) if appointment.photo.attached? %>
         </li>
       <% end %>
     </ol>

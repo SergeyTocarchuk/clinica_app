@@ -1,5 +1,6 @@
 <%= form_with( model: @appointment, url: recommendations_path(@appointment), method: :patch) do |form| %>
   <%= form.label :recommendation, "Recommendations:" %>
   <%= form.text_field :recommendation %>
+  <%= form.file_field :photo %>
   <%= form.submit "Submit" %>
 <% end %>
