@@ -5,4 +5,10 @@ class Appointment < ApplicationRecord
 
   scope :active, -> { where(status: 'active') }
   scope :closed, -> { where(status: 'closed') }
+
+  validate :on => :create do
+    if doctor.appointments.length >= 10
+      errors.add(:appointment, :blank, message: "#{doctor.name} is busy, try later.")
+    end
+  end
 end

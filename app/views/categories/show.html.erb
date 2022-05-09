@@ -1,6 +1,13 @@
-<ol>
-  <% @doctors.each do |doctor| %>
-    <li><%= link_to doctor.name, doctor_path(doctor) %></li>
-    <%= link_to 'View', doctor_path(doctor) %>
-  <% end %>
-</ol>
+<div class="cat--show-container">
+  <h3>Book top <%= @category.title%>s near me</h3>
+  <ul>
+    <% @doctors.each do |doctor| %>
+      <li>
+        <div class="cat--show-header">
+          <p class="cat--show-title">Dr. <%= link_to doctor.name, doctor_path(doctor) %></p>
+          <p class="cat--show-email"><%= doctor.email %></p>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

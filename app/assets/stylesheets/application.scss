@@ -3,9 +3,18 @@
 // @import "active_admin";
 @import "styles/main";
 
-.nav {
-  display: flex;
-  height: 60px;
-  background-color: rgb(25, 172, 209);
-  justify-content: space-between;
+* {
+  padding: 0;
+  margin: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 500px;
 }

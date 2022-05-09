@@ -1,18 +1,53 @@
-<p><%= @doctor.name %></p>
-<p><%= @doctor.email %></p>
-<p><%= @doctor.category.title %></p>
+<% @doctor.appointments.each do |appointment| %>
+  <% if appointment.errors.any? %>
+    <div style="color: red">
+      <ul>
+        <% appointment.errors.each do |error| %>
+          <li><%= error.options[:message] %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
 
-<div>
-  <% if can? :manage, Appointment %>
-    <%= button_to 'Book an appointment', doctor_appointments_path(@doctor), method: :post %>
+<div class="doc--header">
+  <p class="doc--title">Dr. <%= @doctor.name %></p>
+  <p class="doc--category"><%= @doctor.category.title %></p>
+</div>
+
+<div class="doc--btn">
+  <% if current_patient.present? %>
+    <%= button_to 'Book an appointment', doctor_appointments_path(@doctor), 
+                                          class: "btn",
+                                          method: :post %>
   <% end %>
 </div>
 
-<div class="red">
-  <h3>My Coming Appointments</h3>
-  <ol>
-    <% @doctor.appointments.each do |appointment| %>
-      <li>Patient's e-mail:<%= link_to appointment.patient.email, doctor_appointment_path(@doctor.id, appointment.id) %></li>
+<%# <% if can? :manage, Doctor %>
+  <% if current_doctor.present? %>
+  <div class="doc--list">
+    <% if @appointments.active.empty? %>
+      <h3>You haven't upcoming Appointments</h3>
+    <% else %>
+      <h3>My Coming Appointments</h3>
+      <ol>
+        <% @doctor.appointments.active.each do |appointment| %>
+          <li>Patient's e-mail: <%= link_to appointment.patient.email, doctor_appointment_path(@doctor.id, appointment.id) %></li>
+        <% end %>
+      </ol>
     <% end %>
-  </ol>
-</div>
+  </div>
+
+    <div class="doc--list">
+    <% if @appointments.closed.empty? %>
+      <h3>You haven't signed Appointments</h3>
+    <% else %>
+      <h3>My Signed Appointments</h3>
+      <ol>
+        <% @doctor.appointments.closed.each do |appointment| %>
+          <li>Patient's e-mail: <%= link_to appointment.patient.email, doctor_appointment_path(@doctor.id, appointment.id) %></li>
+        <% end %>
+      </ol>
+    <% end %>
+  </div>
+<% end %>

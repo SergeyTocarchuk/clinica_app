@@ -9,6 +9,7 @@ class Ability
         can :manage, Appointment
       elsif user.is_a?(Doctor)
         can :manage, Appointment
+        can :manage, Doctor
       else
         can :read, Appointment
       end

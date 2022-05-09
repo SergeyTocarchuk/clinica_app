@@ -1,9 +1,15 @@
-<h1>Codica Clinic</h1>
-<div>
-  <% @categories.each do |category| %>
+<div class="cat--header">
+  <h1>Find local doctors with the shortest wait time</h1>
+</div>
+
+<div class="cat--container">
   <ul>
-    <li><%= category.title %></li>
-    <%= link_to "View", category_path(category) %>
+    <% @categories.each do |category| %>
+      <li>
+        <div class="cat--item">
+          <%= link_to category.title, category_path(category) %>
+        </div>
+      </li>
+    <% end %>
   </ul>
-  <% end %>
 </div>

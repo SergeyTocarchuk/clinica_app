@@ -1,29 +1,40 @@
-<div class="red">
-  <% if !@appointments.active.empty? %>
-    <h3>My Coming Appointments</h3>
-    <ol>
-      <% @appointments.active.each do |appointment| %>
-        <li>
-          <p><%= appointment.doctor.name %></p>
-          <p><%= appointment.doctor.email %></p>
-          <%= link_to 'View Doctor info', doctor_path(appointment.doctor.id) %>
-          <% if can? :manage, Appointment %>
-            <%= button_to 'Cancel an appointment', patient_appointment_path(@patient.id, appointment.id), method: :patch %>
-          <% end %>
-        </li>
-      <% end %>
-    </ol>
-  <% end %>
 
-  <% if !@appointments.closed.empty? %>
-    <h3>My Closed Appointments</h3>
-    <ol>
+<div class="pat--list">
+  <% if @appointments.active.empty? %>
+    <h3>You haven't upcoming Appointments</h3>
+  <% else %>
+    <h3>My Coming Appointments</h3>
+    <ul>
       <% @appointments.closed.each do |appointment| %>
         <li>
-          <p><%= appointment.recommendation %></p>
-          <%= image_tag(appointment.photo, width: 200) if appointment.photo.attached? %>
+          <p>Visit to: <%= appointment.doctor.category.title %></p>
+          <p>Dr. <%= link_to appointment.doctor.name, doctor_path(appointment.doctor) %></p>
+          <div class="doc--btn">
+            <%= button_to 'Cancel an appointment', patient_appointment_path(@patient.id, appointment.id), 
+                                                 class: "btn", 
+                                                 method: :patch %>
+          </div>
         </li>
       <% end %>
-    </ol>
+    </ul>
+  <% end %>
+
+  <% if @appointments.closed.empty? %>
+    <h3>You haven't Closed Appointments</h3>
+  <% else %>
+    <h3>My Closed Appointments</h3>
+    <ul>
+      <% @appointments.closed.each do |appointment| %>
+        <li>
+          <p>Visit to: <%= appointment.doctor.category.title %></p>
+          <p>Dr. <%= link_to appointment.doctor.name, doctor_path(appointment.doctor) %></p>
+          <p>Recommendation: <%= appointment.recommendation %></p>
+          <div class="pat--docs">
+            <p>Attached docs:</p>
+            <%= image_tag(appointment.photo, width: 100) if appointment.photo.attached? %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 </div>
