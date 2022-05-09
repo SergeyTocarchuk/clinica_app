@@ -29,7 +29,7 @@
     <% if @appointments.active.empty? %>
       <h3>You haven't upcoming Appointments</h3>
     <% else %>
-      <h3>My Coming Appointments</h3>
+      <h3>My coming Appointments</h3>
       <ol>
         <% @doctor.appointments.active.each do |appointment| %>
           <li>Patient's e-mail: <%= link_to appointment.patient.email, doctor_appointment_path(@doctor.id, appointment.id) %></li>
