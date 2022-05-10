@@ -1,3 +1,14 @@
+<% @appointments.each do |appointment| %>
+  <% if appointment.errors.any? %>
+    <div style="color: red">
+      <ul>
+        <% appointment.errors.each do |error| %>
+          <li><%= error.options[:message] %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
 
 <div class="pat--list">
   <% if @appointments.active.empty? %>
@@ -5,14 +16,16 @@
   <% else %>
     <h3>My Coming Appointments</h3>
     <ul>
-      <% @appointments.closed.each do |appointment| %>
+      <% @appointments.active.each do |appointment| %>
         <li>
-          <p>Visit to: <%= appointment.doctor.category.title %></p>
-          <p>Dr. <%= link_to appointment.doctor.name, doctor_path(appointment.doctor) %></p>
-          <div class="doc--btn">
-            <%= button_to 'Cancel an appointment', patient_appointment_path(@patient.id, appointment.id), 
-                                                 class: "btn", 
-                                                 method: :patch %>
+          <div class="app-block">
+            <p>Visit to: <%= appointment.doctor.category.title %></p>
+            <p>Dr. <%= link_to appointment.doctor.name, doctor_path(appointment.doctor) %></p>
+            <div class="doc--btn">
+              <%= button_to 'Cancel an appointment', patient_appointment_path(current_patient.id, appointment.id), 
+                                                  class: "btn", 
+                                                  method: :patch %>
+            </div>
           </div>
         </li>
       <% end %>
@@ -26,12 +39,14 @@
     <ul>
       <% @appointments.closed.each do |appointment| %>
         <li>
-          <p>Visit to: <%= appointment.doctor.category.title %></p>
-          <p>Dr. <%= link_to appointment.doctor.name, doctor_path(appointment.doctor) %></p>
-          <p>Recommendation: <%= appointment.recommendation %></p>
-          <div class="pat--docs">
-            <p>Attached docs:</p>
-            <%= image_tag(appointment.photo, width: 100) if appointment.photo.attached? %>
+          <div class="app-block">
+            <p>Visit to: <%= appointment.doctor.category.title %></p>
+            <p>Dr. <%= link_to appointment.doctor.name, doctor_path(appointment.doctor) %></p>
+            <p>Recommendation: <%= appointment.recommendation %></p>
+            <div class="pat--docs">
+              <p>Attached docs:</p>
+              <%= image_tag(appointment.photo, width: 100) if appointment.photo.attached? %>
+            </div>
           </div>
         </li>
       <% end %>

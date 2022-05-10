@@ -1,6 +1,6 @@
 class DoctorsController < ApplicationController
   def show
-    @doctor = doctor_signed_in? ? current_doctor : Doctor.find(params[:id])
-    @appointments = @doctor.appointments
+    @doctor = Doctor.find(params[:id])
+    @appointments = @doctor.appointments if current_doctor.present?
   end
 end

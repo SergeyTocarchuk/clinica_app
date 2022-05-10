@@ -45,7 +45,13 @@
       <h3>My Signed Appointments</h3>
       <ol>
         <% @doctor.appointments.closed.each do |appointment| %>
-          <li>Patient's e-mail: <%= link_to appointment.patient.email, doctor_appointment_path(@doctor.id, appointment.id) %></li>
+          <li>
+            Patient's e-mail: <%= appointment.patient.email %>
+            <div class="pat--docs">
+              <p>Attached docs:</p>
+              <%= image_tag(appointment.photo, width: 100) if appointment.photo.attached? %>
+            </div>
+          </li>
         <% end %>
       </ol>
     <% end %>

@@ -204,11 +204,16 @@ nav {
   padding-bottom: 3px;
 }
 
-.pat--list > ul > li > p > a {
+.app-block > p > a {
   text-decoration: none;
   color: black;
 }
 
-.pat--list > ul > li > p > a:hover {
+.app-block > p > a:hover {
   border-bottom: 1px solid grey;
+}
+
+.app-block {
+  padding-bottom: 10px;
+  border-bottom: 3px solid #F3F3F4;
 }

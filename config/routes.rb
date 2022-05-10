@@ -17,6 +17,4 @@ Rails.application.routes.draw do
   resources :patients, :only => [:show] do
     resources :appointments, :only => [:update]
   end
-
-  
 end

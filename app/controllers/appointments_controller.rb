@@ -17,10 +17,12 @@ class AppointmentsController < ApplicationController
   end
 
   def update
-    @appointment = current_patient.appointments.find(params[:id])
+    @appointments = current_patient.appointments
+    @appointment = @appointments.find(params[:id])
     @appointment.status = 'closed'
     if @appointment.save
-      render 'patients/show'
+      redirect_to patient_path(current_patient)
+      flash.now[:notice] = 'Appointment to Dr. #{@appointment.doctor.name} was cancelled'
     else
       flash.now[:allert] = 'Not cancelled'
     end
