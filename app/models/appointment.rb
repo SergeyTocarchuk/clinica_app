@@ -10,7 +10,7 @@ class Appointment < ApplicationRecord
 
   def check_availability
     if doctor.appointments.active.length > 2
-      errors.add(:appointment, :blank, message: "#{doctor.name} is busy, try later.")
+      errors.add(:appointment, :blank, message: "#{doctor.name} is busy, please try later.")
     end
   end
 end
