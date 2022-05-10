@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :patient do
-    email { FFaker::Internet.email }
+    phone { FFaker::PhoneNumber.cell_phone.gsub(/-/, '') }
     password { "password" }
     password_confirmation { "password" }
   end
