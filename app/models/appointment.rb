@@ -9,7 +9,7 @@ class Appointment < ApplicationRecord
   validate :check_availability
 
   def check_availability
-    if doctor.appointments.active.length > 10
+    if doctor.appointments.active.length > 2
       errors.add(:appointment, :blank, message: "#{doctor.name} is busy, try later.")
     end
   end
