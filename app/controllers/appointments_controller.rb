@@ -29,10 +29,11 @@ class AppointmentsController < ApplicationController
   end
 
   def add_recommendation
-    @appointment = current_doctor.appointments.find(params[:appointment_id])
+    @doctor = current_doctor
+    @appointment = @doctor.appointments.find(params[:appointment_id])
+    @appointment.photo.attach(params[:appointment][:photo]) if !params[:appointment][:photo].nil?
     if @appointment.update(recommendation: params[:appointment][:recommendation], status: 'closed')
-      @appointment.photo.attach(params[:appointment][:photo]) if !params[:appointment][:photo].nil?
-      redirect_to '/doctors/show'
+      redirect_to doctor_path(@doctor)
     else
       render :show
     end

@@ -6,7 +6,7 @@ class Appointment < ApplicationRecord
   scope :active, -> { where(status: 'active') }
   scope :closed, -> { where(status: 'closed') }
 
-  validate :check_availability
+  validate :check_availability, :on => :create
 
   def check_availability
     if doctor.appointments.active.length > 2

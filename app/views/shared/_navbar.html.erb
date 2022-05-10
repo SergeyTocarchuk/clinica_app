@@ -9,7 +9,7 @@
     </span>
   <% elsif current_doctor.present? %>
     <span class="line">
-      <%= link_to current_doctor.phone, doctor_path(current_doctor) %> 
+      <%= link_to "Dr. #{current_doctor.name}", doctor_path(current_doctor) %> 
       <%= button_to "Log out", destroy_doctor_session_path, class: "btn--log-out", method: :delete %>
     </span>
   <% else %>
