@@ -11,7 +11,7 @@ class Patient < ApplicationRecord
     false
   end
 
-  def email_changed?
+  def will_save_change_to_email?
     false
   end
 end

@@ -5,7 +5,7 @@
       <li>
         <div class="cat--show-header">
           <p class="cat--show-title">Dr. <%= link_to doctor.name, doctor_path(doctor) %></p>
-          <p class="cat--show-email"><%= doctor.email %></p>
+          <p class="cat--show-phone">cell: +<%= doctor.phone %></p>
         </div>
       </li>
     <% end %>

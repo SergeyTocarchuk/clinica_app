@@ -32,7 +32,7 @@
       <h3>My coming Appointments</h3>
       <ol>
         <% @doctor.appointments.active.each do |appointment| %>
-          <li>Patient's e-mail: <%= link_to appointment.patient.email, doctor_appointment_path(@doctor.id, appointment.id) %></li>
+          <li>Patient's e-mail: <%= link_to appointment.patient.phone, doctor_appointment_path(@doctor.id, appointment.id) %></li>
         <% end %>
       </ol>
     <% end %>
@@ -46,7 +46,7 @@
       <ol>
         <% @doctor.appointments.closed.each do |appointment| %>
           <li>
-            Patient's e-mail: <%= appointment.patient.email %>
+            Patient's e-mail: <%= appointment.patient.phone %>
             <div class="pat--docs">
               <p>Attached docs:</p>
               <%= image_tag(appointment.photo, width: 100) if appointment.photo.attached? %>

@@ -48,4 +48,4 @@ end
                 category_id: 4)
 end
 
-AdminUser.create!(phone: "380501234567", password: 'password', password_confirmation: 'password')
+AdminUser.create!(phone: "380507654321", password: 'password', password_confirmation: 'password')

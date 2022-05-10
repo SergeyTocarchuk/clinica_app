@@ -1,7 +1,7 @@
 class Doctor < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
+  
   belongs_to :category
   has_many :appointments
   has_many :patients, through: :appointments
@@ -12,7 +12,7 @@ class Doctor < ApplicationRecord
     false
   end
 
-  def email_changed?
+  def will_save_change_to_email?
     false
   end
 end
