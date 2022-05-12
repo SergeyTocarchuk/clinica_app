@@ -11,20 +11,20 @@ class AppointmentsController < ApplicationController
     if @appointment.save
       redirect_to root_path, notice: "You successfully booked an appointment"
     else
-      render 'doctors/show'
-      flash.now[:alert] = 'Something went wrong'
+      redirect_to root_path, alert: "Ooops ... Dr. #{@doctor.name} is not available in the near future, please try later"
     end
   end
-
+  
   def update
     @appointments = current_patient.appointments
     @appointment = @appointments.find(params[:id])
     @appointment.status = 'closed'
     if @appointment.save
+      flash[:notice] = "Appointment to Dr. #{@appointment.doctor.name} was cancelled"
       redirect_to patient_path(current_patient)
-      flash.now[:notice] = 'Appointment to Dr. #{@appointment.doctor.name} was cancelled'
     else
-      flash.now[:allert] = 'Not cancelled'
+      flash.now[:allert] = 'Not cancelled, try again'
+      render :show
     end
   end
 
@@ -33,6 +33,7 @@ class AppointmentsController < ApplicationController
     @appointment = @doctor.appointments.find(params[:appointment_id])
     @appointment.photo.attach(params[:appointment][:photo]) if !params[:appointment][:photo].nil?
     if @appointment.update(recommendation: params[:appointment][:recommendation], status: 'closed')
+      flash[:notice] = "Recommendation was successfully created"
       redirect_to doctor_path(@doctor)
     else
       render :show

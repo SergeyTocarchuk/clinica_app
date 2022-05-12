@@ -1,6 +1,23 @@
 .notice-msg {
   text-align: center;
   padding: 15px 0;
+  max-width: 500px;
+}
+
+.notice {
+  background: #198754;
+  color: white;
+  font-size: 13px;
+  padding: 7px;
+  border-radius: 5px;
+}
+
+.alert {
+  background: #DC3545;
+  color: white;
+  font-size: 13px;
+  padding: 7px;
+  border-radius: 5px;
 }
 
 nav {

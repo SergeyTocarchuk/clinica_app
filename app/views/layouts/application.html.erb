@@ -14,12 +14,17 @@
     <nav>
       <%= render 'shared/navbar' %>
     </nav>
-    <div class="notice-msg">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-    </div>
     <div class="container">
+      <div class="notice-msg">
+        <% if flash.notice %>
+          <p class="notice"><%= notice %></p>
+        <% elsif flash.alert %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+      </div>
       <%= yield %>
     </div>
   </body>
 </html>
+
+<%= console %>
