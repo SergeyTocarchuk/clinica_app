@@ -1,0 +1,23 @@
+{
+  "name": "clinic-app",
+  "version": "1.0.0",
+  "repository": "https://github.com/SergeyTocarchuk/clinica_app",
+  "scripts": {
+    "up": "docker-compose up",
+    "stop": "docker-compose stop",
+    "down": "docker-compose down",
+    "build": "yarn clean && docker-compose up --build",
+
+    "bash": "docker-compose exec app bash",
+    "c": "docker-compose exec app rails c",
+    "routes": "docker-compose exec app rails routes",
+
+    "db:seed": "docker-compose exec app rails db:seed",
+    "db:reset": "docker-compose exec app rails db:reset",
+    "db:migrate": "docker-compose exec app rails db:migrate",
+    "db:rollback": "docker-compose exec app rails db:rollback",
+
+    "rubocop": "docker-compose exec app rubocop",
+    "rspec": "docker compose exec -e RAILS_ENV=test app bundle exec rspec"
+  }
+}
