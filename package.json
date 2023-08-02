@@ -6,7 +6,7 @@
     "up": "docker-compose up",
     "stop": "docker-compose stop",
     "down": "docker-compose down",
-    "build": "yarn clean && docker-compose up --build",
+    "build": "docker-compose up --build",
 
     "bash": "docker-compose exec app bash",
     "c": "docker-compose exec app rails c",

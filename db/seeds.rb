@@ -1,8 +1,6 @@
-require 'ffaker'
-
-1..5.times do |num|
-  Patient.create(phone: "38050456123#{num}", password: 'password', password_confirmation: 'password')
-end
+Patient.create(phone: "380504561230",
+               password: 'password',
+               password_confirmation: 'password')
 
 categories = ['surgeon', 'traumatologist', 'therapist', 'dentist']
 categories.each do |category|

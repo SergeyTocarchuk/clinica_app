@@ -7,14 +7,15 @@ Rails.application.routes.draw do
     get '/patients/sign_out' => 'devise/sessions#destroy'
   end
 
-  root to: "categories#index"
+  root to: 'patients/sessions#new'
+
   patch '/appointments/:appointment_id/add_recommendation', to: 'appointments#add_recommendation', as: :recommendations
 
-  resources :categories, :only => [:show]
-  resources :doctors, :only => [:show] do
-    resources :appointments, :only => [:show, :create]
+  resources :categories, only: :show
+  resources :doctors, only: :show do
+    resources :appointments, only: %i[show create]
   end
-  resources :patients, :only => [:show] do
-    resources :appointments, :only => [:update]
+  resources :patients, only: :show do
+    resources :appointments, only: :update
   end
 end
