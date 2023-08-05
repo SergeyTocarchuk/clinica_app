@@ -58,25 +58,22 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'rspec-rails'
   gem 'factory_bot_rails'
-  gem 'ffaker'
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'database_cleaner'
+
+  # This gem is a port of Perl's Data::Faker library that generates fake data
+  gem 'faker'
+
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
+  # Add a comment summarizing the current schema to the top of file
+  gem 'annotate'
 
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
-end
-
-group :production do
-  gem 'ffaker'
 end
 
 gem "dartsass-rails", "~> 0.3.0"

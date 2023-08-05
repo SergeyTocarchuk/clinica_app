@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_10_134232) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_05_202025) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -84,6 +84,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_10_134232) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "chats", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "doctor_id", null: false
+    t.bigint "patient_id", null: false
+    t.index ["doctor_id"], name: "index_chats_on_doctor_id"
+    t.index ["patient_id"], name: "index_chats_on_patient_id"
+  end
+
   create_table "doctors", force: :cascade do |t|
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -96,6 +105,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_10_134232) do
     t.string "phone"
     t.index ["category_id"], name: "index_doctors_on_category_id"
     t.index ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.string "messageable_type", null: false
+    t.bigint "messageable_id", null: false
+    t.bigint "chat_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
+    t.index ["messageable_type", "messageable_id"], name: "index_messages_on_messageable"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -113,5 +133,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_10_134232) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "appointments", "doctors"
   add_foreign_key "appointments", "patients"
+  add_foreign_key "chats", "doctors"
+  add_foreign_key "chats", "patients"
   add_foreign_key "doctors", "categories"
 end

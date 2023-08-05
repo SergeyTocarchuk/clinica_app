@@ -6,6 +6,8 @@ class Doctor < ApplicationRecord
   has_many :appointments
   has_many :patients, through: :appointments
 
+  has_many :messages, as: :messageable
+
   validates :phone, uniqueness: true
 
   def email_required?

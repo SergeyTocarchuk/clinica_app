@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :appointment do
-    recommendation { FFaker::String }
+    recommendation { Faker::Lorem.sentence(word_count: 3) }
     patient
     doctor
   end

@@ -17,6 +17,8 @@
     "db:migrate": "docker-compose exec app rails db:migrate",
     "db:rollback": "docker-compose exec app rails db:rollback",
 
+    "annotate": "docker-compose exec app bundle exec annotate",
+
     "rubocop": "docker-compose exec app rubocop",
     "rspec": "docker compose exec -e RAILS_ENV=test app bundle exec rspec"
   }

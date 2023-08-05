@@ -2,12 +2,14 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config 
   ActiveAdmin.routes(self)
 
+  mount ActionCable.server => '/cable'
+
   devise_for :doctors, path: 'doctors'
   devise_for :patients, path: 'patients' do
     get '/patients/sign_out' => 'devise/sessions#destroy'
   end
 
-  root to: 'patients/sessions#new'
+  root to: 'pages#home'
 
   patch '/appointments/:appointment_id/add_recommendation', to: 'appointments#add_recommendation', as: :recommendations
 

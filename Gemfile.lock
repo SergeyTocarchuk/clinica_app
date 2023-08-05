@@ -77,6 +77,9 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
     arbre (1.5.0)
       activesupport (>= 3.0.0, < 7.1)
       ruby2_keywords (>= 0.0.2, < 1.0)
@@ -138,7 +141,8 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
-    ffaker (2.21.0)
+    faker (3.2.0)
+      i18n (>= 1.8.11, < 2)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
     formtastic_i18n (0.7.0)
@@ -189,7 +193,6 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.0)
     minitest (5.15.0)
     msgpack (1.5.1)
     net-imap (0.2.3)
@@ -207,8 +210,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.4)
-      mini_portile2 (~> 2.8.0)
+    nokogiri (1.13.4-aarch64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.3.5)
@@ -308,10 +310,11 @@ GEM
     zeitwerk (2.5.4)
 
 PLATFORMS
-  ruby
+  aarch64-linux
 
 DEPENDENCIES
   activeadmin
+  annotate
   aws-sdk-s3
   bootsnap
   cancancan
@@ -321,7 +324,7 @@ DEPENDENCIES
   debug
   devise
   factory_bot_rails
-  ffaker
+  faker
   importmap-rails
   jbuilder
   pg (~> 1.1)
@@ -336,7 +339,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.1.0p0
+   ruby 3.1.4p223
 
 BUNDLED WITH
    2.4.17
